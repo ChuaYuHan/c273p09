@@ -6,7 +6,7 @@ $(document).ready(function () {
     $.ajax({
         type: "GET",
 //        url: "http://localhost/C273/C273_L09CloudNine/getStatistics.php",
-        url: "getCountryDetails.php",
+        url: "https://p09-19020844.azurewebsites.net/getCountryDetails.php",
         data: "population=" + data + "country=" + labels,
         cache: false,
         dataType: "JSON",
