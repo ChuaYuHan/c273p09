@@ -1,22 +1,7 @@
 $(document).ready(function () {
 
-    var data = [10, 20, 30, 40, 50];
-    var labels = ["Singapore", "Malaysia", "Thailand", "Vietnam", "Myanmar"];
-
-    var barChart = new Chart($("#barChart"), {
-        type: 'horizontalBar',
-        data: {
-            datasets: [{
-                    data: data,
-                    backgroundColor: "lightblue",
-                    label: 'Population'
-                }],
-            labels: labels
-        },
-        options: {
-            responsive: true
-        }
-    });
+    var data = [];
+    var labels = [];
 
     $.ajax({
         type: "GET",
@@ -27,13 +12,32 @@ $(document).ready(function () {
         success: function (response) {
             var message = "";
             for (i = 0; i < response.length; i++) {
-                message += response[i].country + response[i].population;
+                data.push(response[i].population);
+                labels.push(response[i].country);
             }
-            $("#worldTable").html(message);
+
+            var barChart = new Chart($("#barChart"), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: [{
+                            data: data,
+                            backgroundColor: "lightblue",
+                            label: 'Population'
+                        }],
+                    labels: labels
+                },
+                options: {
+                    responsive: true
+                }
+            });
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
         }
     });
+
+
+
+
 
 });
