@@ -10,7 +10,6 @@ $(document).ready(function () {
         cache: false,
         dataType: "JSON",
         success: function (response) {
-            var message = "";
             for (i = 0; i < response.length; i++) {
                 data.push(response[i].population);
                 labels.push(response[i].country);
